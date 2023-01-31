@@ -2,6 +2,8 @@ package state;
 
 public class Menu implements MenuState{
 
+
+    MenuState reservationMenu;
     MenuState insertReservation;
     MenuState prepareReservation;
     MenuState manageReservation;
@@ -10,9 +12,12 @@ public class Menu implements MenuState{
 
     // Initialize states objects
     public Menu() {
+        this.reservationMenu = new ReservationMenu(this);
         this.insertReservation = new InsertReservation(this);
         this.prepareReservation = new PrepareReservation(this);
         this.manageReservation = new ManageReservation(this);
+
+        menuState = reservationMenu;
     }
 
     // State Pattern

@@ -9,7 +9,7 @@ public class InsertReservation implements MenuState {
 
     @Override
     public void showMenu() {
-
+        System.out.println("ini adalah show menu");
     }
 
     @Override
