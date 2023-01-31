@@ -14,18 +14,38 @@ public class ReservationApplication implements ApplicationState {
 
     @Override
     public void runSubProgram() {
-        int choice = 0;
+
+        int choice = 4;
+
+        do {
+            choice = menu();
+            switch (choice) {
+                case 1 -> application.setApplicationState(application.getInsertReservation());
+                case 2 -> application.setApplicationState(application.getPrepareReservation());
+                case 3 -> application.setApplicationState(application.getManageReservation());
+                case 4 -> exit();
+            }
+            application.runSubProgram();
+        }while(choice != 4);
+
+    }
+
+    int menu() {
+        int choice;
+        System.out.println("1. Insert Reservation");
+        System.out.println("2. Prepare Reservation");
+        System.out.println("3. Manage Reservation");
+        System.out.println("4. Exit");
         System.out.print(">> ");
         choice = sc.nextInt();sc.nextLine();
 
-        switch (choice) {
-            case 1 -> application.setApplicationState(application.getInsertReservation());
-            case 4 -> this.exit();
-        }
+        return choice;
     }
+
 
     @Override
     public void exit() {
         System.out.println("Thank you");
+        System.exit(1);
     }
 }
