@@ -1,10 +1,8 @@
-package model;
+package proxy;
 
-import proxy.GetRoomData;
+import model.Room;
 
-public class Room implements GetRoomData {
-
-    public int minimumPrice;
+public class RoomProxy implements GetRoomData {
 
     @Override
     public int getMinimumPrice() {
