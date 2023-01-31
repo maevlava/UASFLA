@@ -36,6 +36,5 @@ public class ReservationMenu implements MenuState {
     @Override
     public void menuExit() {
         System.out.println("Thank you");
-        menuExit();
     }
 }
