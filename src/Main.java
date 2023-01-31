@@ -1,10 +1,14 @@
-import state.Menu;
+import state.Application;
 
 public class Main {
-    // TODO loop menu
-    public static void main(String[] args) {
-        Menu menus = new Menu();
 
-        menus.showMenu();
+    Application reservationApp;
+    public Main() {
+        reservationApp = new Application();
+        reservationApp.run();
+    }
+
+    public static void main(String[] args) {
+        new Main();
     }
 }

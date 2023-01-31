@@ -1,25 +1,21 @@
 package state;
 
-public class ManageReservation implements MenuState {
+public class ManageReservation implements ApplicationState {
 
-    Menu menu;
+    Application application;
 
-    public ManageReservation(Menu menu) {
-        this.menu = menu;
+    public ManageReservation(Application application) {
+        this.application = application;
     }
 
-    @Override
-    public void showMenu() {
-
-    }
 
     @Override
-    public void doThings() {
+    public void runSubProgram() {
 
     }
 
     @Override
-    public void menuExit() {
+    public void exit() {
 
     }
 }

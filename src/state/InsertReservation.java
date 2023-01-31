@@ -1,24 +1,19 @@
 package state;
 
-public class InsertReservation implements MenuState {
+public class InsertReservation implements ApplicationState {
 
-    Menu menu;
-    public InsertReservation(Menu menus) {
-        menu = menus;
+    Application application;
+    public InsertReservation(Application menus) {
+        application = menus;
     }
 
     @Override
-    public void showMenu() {
-        System.out.println("ini adalah show menu");
-    }
-
-    @Override
-    public void doThings() {
+    public void runSubProgram() {
 
     }
 
     @Override
-    public void menuExit() {
+    public void exit() {
 
     }
 }

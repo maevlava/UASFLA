@@ -1,24 +1,19 @@
 package state;
 
-public class PrepareReservation implements MenuState {
+public class PrepareReservation implements ApplicationState {
 
-    Menu menu;
-    public PrepareReservation(Menu menu) {
-        this.menu = menu;
+    Application application;
+    public PrepareReservation(Application application) {
+        this.application = application;
     }
 
     @Override
-    public void showMenu() {
-
-    }
-
-    @Override
-    public void doThings() {
+    public void runSubProgram() {
 
     }
 
     @Override
-    public void menuExit() {
+    public void exit() {
 
     }
 }
