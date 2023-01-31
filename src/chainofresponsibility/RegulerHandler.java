@@ -13,5 +13,5 @@ public class RegulerHandler implements RoomHandler {
     public void checkBooking() {
 
     }
-    
+
 }
