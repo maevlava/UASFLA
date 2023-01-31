@@ -1,6 +1,8 @@
 package chainofresponsibility;
 
+import model.Pelanggan;
+
 public interface RoomHandler {
-    void nexthandler(RoomHandler handler);
-    void checkBooking();
+    void nextHandler(RoomHandler handler);
+    void checkBooking(Pelanggan pelanggan, String room, int price);
 }

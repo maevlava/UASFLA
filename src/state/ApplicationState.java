@@ -1,6 +1,8 @@
 package state;
 
+import model.Pelanggan;
+
 public interface ApplicationState {
-    void runSubProgram();
+    void runSubProgram(Pelanggan pelanggan);
     void exit();
 }

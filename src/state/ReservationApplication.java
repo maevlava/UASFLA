@@ -1,5 +1,7 @@
 package state;
 
+import model.Pelanggan;
+
 import java.util.Scanner;
 
 public class ReservationApplication implements ApplicationState {
@@ -13,7 +15,7 @@ public class ReservationApplication implements ApplicationState {
     }
 
     @Override
-    public void runSubProgram() {
+    public void runSubProgram(Pelanggan pelanggan) {
 
         int choice = 4;
 
@@ -25,7 +27,7 @@ public class ReservationApplication implements ApplicationState {
                 case 3 -> application.setApplicationState(application.getManageReservation());
                 case 4 -> exit();
             }
-            application.runSubProgram();
+            application.runSubProgram(pelanggan);
         }while(choice != 4);
 
     }

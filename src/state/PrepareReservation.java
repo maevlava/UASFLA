@@ -1,5 +1,7 @@
 package state;
 
+import model.Pelanggan;
+
 public class PrepareReservation implements ApplicationState {
 
     Application application;
@@ -8,7 +10,7 @@ public class PrepareReservation implements ApplicationState {
     }
 
     @Override
-    public void runSubProgram() {
+    public void runSubProgram(Pelanggan pelanggan) {
 
     }
 

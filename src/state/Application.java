@@ -1,5 +1,7 @@
 package state;
 
+import model.Pelanggan;
+
 public class Application implements ApplicationState {
 
 
@@ -9,9 +11,11 @@ public class Application implements ApplicationState {
     ApplicationState manageReservation;
 
     ApplicationState applicationState;
+    Pelanggan pelanggan;
 
     // Initialize states objects
     public Application() {
+        this.pelanggan = new Pelanggan();
         this.reservationMenu = new ReservationApplication(this);
         this.insertReservation = new InsertReservation(this);
         this.prepareReservation = new PrepareReservation(this);
@@ -20,7 +24,7 @@ public class Application implements ApplicationState {
         applicationState = reservationMenu;
     }
     public void run() {
-        applicationState.runSubProgram();
+        applicationState.runSubProgram(this.pelanggan);
     }
 
     // State Pattern
@@ -29,8 +33,8 @@ public class Application implements ApplicationState {
     }
 
     @Override
-    public void runSubProgram() {
-        applicationState.runSubProgram();
+    public void runSubProgram(Pelanggan pelanggan) {
+        applicationState.runSubProgram(pelanggan);
     }
 
     @Override
