@@ -18,7 +18,7 @@ public class InsertReservation implements MenuState {
     }
 
     @Override
-    public void exit() {
+    public void menuExit() {
 
     }
 }

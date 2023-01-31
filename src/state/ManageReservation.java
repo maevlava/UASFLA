@@ -19,7 +19,7 @@ public class ManageReservation implements MenuState {
     }
 
     @Override
-    public void exit() {
+    public void menuExit() {
 
     }
 }

@@ -28,16 +28,14 @@ public class ReservationMenu implements MenuState {
         choice = sc.nextInt();sc.nextLine();
 
         switch (choice) {
-            case 1 -> {menu.setMenuState(menu.getInsertReservation());}
-            case 4 -> {
-                System.out.println("Thank you");
-                exit();
-            }
+            case 1 -> menu.setMenuState(menu.getInsertReservation());
+            case 4 -> this.menuExit();
         }
     }
 
     @Override
-    public void exit() {
-
+    public void menuExit() {
+        System.out.println("Thank you");
+        menuExit();
     }
 }

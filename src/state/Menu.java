@@ -36,8 +36,8 @@ public class Menu implements MenuState{
     }
 
     @Override
-    public void exit() {
-        menuState.exit();
+    public void menuExit() {
+        menuState.menuExit();
     }
 
 
