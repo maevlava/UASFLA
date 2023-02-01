@@ -8,7 +8,7 @@ public class Room implements GetRoomData {
 
     @Override
     public int getMinimumPrice() {
-        return new Room().getMinimumPrice();
+        return this.minimumPrice;
     }
 
     @Override

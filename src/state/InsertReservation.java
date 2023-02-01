@@ -1,9 +1,6 @@
 package state;
 
-import chainofresponsibility.FamilyHandler;
-import chainofresponsibility.RegulerHandler;
-import chainofresponsibility.RoomHandler;
-import chainofresponsibility.RoyalHandler;
+import chainofresponsibility.*;
 import model.Pelanggan;
 
 import java.util.Scanner;
@@ -18,11 +15,10 @@ public class InsertReservation implements ApplicationState {
     }
     @Override
     public void runSubProgram(Pelanggan pelanggan) {
-        insertPelangganData(pelanggan);
-
+        bookKamar(pelanggan);
     }
 
-    private void insertPelangganData(Pelanggan pelanggan) {
+    private void bookKamar(Pelanggan pelanggan) {
         System.out.print("Mohon masukkan nama: ");
         pelanggan.nama += sc.nextLine();
         System.out.print("\nMasukkan tipe Kamar: \"Royal\" | \"Family\" | \"Reguler\" ");
@@ -30,22 +26,9 @@ public class InsertReservation implements ApplicationState {
         System.out.print("\nMasukkan Harga: ");
         int harga = sc.nextInt();sc.nextLine();
 
-        askRoomHandlerHelp(pelanggan, kamar, harga);
+        Resepsionis resepsionis = new Resepsionis(pelanggan);
+        resepsionis.askRoomHandlerHelp(kamar, harga);
     }
-    private void askRoomHandlerHelp(Pelanggan pelanggan, String room, int price) {
-        // ini kalau pake factory keknya enak anjay, berarti combonya sama factory
-        RoomHandler regulerHandler = new RegulerHandler();
-        RoomHandler familyHandler = new FamilyHandler();
-        RoomHandler royalHandler = new RoyalHandler();
-
-        // ask every handler
-        royalHandler.nextHandler(familyHandler);
-        familyHandler.nextHandler(regulerHandler);
-
-        royalHandler.checkBooking(pelanggan, room, price);
-
-    }
-
 
     @Override
     public void exit() {
