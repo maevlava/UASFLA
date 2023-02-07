@@ -19,8 +19,10 @@ public class InsertReservation implements ApplicationState {
     }
 
     private void bookKamar(Pelanggan pelanggan) {
-        System.out.print("Mohon masukkan nama: ");
-        pelanggan.nama += sc.nextLine();
+        if (pelanggan.nama.equals("")) {
+            System.out.print("Mohon masukkan nama: ");
+            pelanggan.nama += sc.nextLine();
+        }
         System.out.print("\nMasukkan tipe Kamar: \"Royal\" | \"Family\" | \"Reguler\" ");
         String kamar = sc.nextLine();
         System.out.print("\nMasukkan Harga: ");

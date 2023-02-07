@@ -5,9 +5,12 @@ import model.Reguler;
 import model.Room;
 import model.Royal;
 
+import java.util.ArrayList;
+
 public class RoomProxy implements GetRoomData {
 
     Room roomPlaceHolder;
+
     public RoomProxy(String types) {
         if (types.equals("Royal")) {
             roomPlaceHolder = new Royal();
@@ -24,7 +27,7 @@ public class RoomProxy implements GetRoomData {
     }
 
     @Override
-    public void getFacilitates() {
-
+    public ArrayList<String> getFacilities() {
+        return roomPlaceHolder.getFacilities();
     }
 }

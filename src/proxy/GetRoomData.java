@@ -1,6 +1,8 @@
 package proxy;
 
+import java.util.ArrayList;
+
 public interface GetRoomData {
     int getMinimumPrice();
-    void getFacilitates();
+    ArrayList<String> getFacilities();
 }

@@ -1,6 +1,8 @@
 package state;
 
+import chainofresponsibility.Resepsionis;
 import model.Pelanggan;
+import model.Room;
 
 public class ManageReservation implements ApplicationState {
 
@@ -14,9 +16,6 @@ public class ManageReservation implements ApplicationState {
     @Override
     public void runSubProgram(Pelanggan pelanggan) {
 
-    }
-    private void showReservation() {
-        
     }
 
     @Override

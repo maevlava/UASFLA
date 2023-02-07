@@ -1,11 +1,12 @@
 package chainofresponsibility;
 
 import model.Pelanggan;
+import model.Room;
 
 public class Resepsionis {
     String roomRequest;
     int priceOffered;
-    Pelanggan pelanggan;
+    public Pelanggan pelanggan;
 
     public Resepsionis(Pelanggan pelanggan) {
         this.pelanggan = pelanggan;
@@ -36,5 +37,20 @@ public class Resepsionis {
 
     public int getPriceOffered() {
         return priceOffered;
+    }
+
+    public void askRoomHandlerPrepare(int indexKamar) {
+        Room roomToBePrepared = pelanggan.reservation.get(indexKamar);
+
+        RoomHandler regulerHandler = new RegulerHandler();
+        RoomHandler familyHandler = new FamilyHandler();
+        RoomHandler royalHandler = new RoyalHandler();
+
+        // ask every handler
+        royalHandler.nextHandler(familyHandler);
+        familyHandler.nextHandler(regulerHandler);
+        regulerHandler.nextHandler(null);
+
+        royalHandler.prepareFacilities(roomToBePrepared);
     }
 }

@@ -1,8 +1,6 @@
 package chainofresponsibility;
 
-import model.Pelanggan;
-import model.Reguler;
-import model.Royal;
+import model.*;
 import proxy.GetRoomData;
 import proxy.RoomProxy;
 
@@ -11,18 +9,18 @@ import java.util.Scanner;
 public class RegulerHandler implements RoomHandler {
 
     Scanner sc = new Scanner(System.in);
-    RoomHandler handler;
+    RoomHandler nextHandler;
     GetRoomData regulerProxy;
-
+    public RegulerHandler() {
+        regulerProxy = new RoomProxy("Reguler");
+    }
     @Override
     public void nextHandler(RoomHandler handler) {
-        this.handler = handler;
+        this.nextHandler = handler;
     }
 
     @Override
     public void checkBooking(Resepsionis resepsionis) {
-
-            regulerProxy = new RoomProxy("Reguler");
 
             if (resepsionis.priceOffered >= regulerProxy.getMinimumPrice()) {
 
@@ -38,6 +36,19 @@ public class RegulerHandler implements RoomHandler {
 
         System.out.println("Silahkan datang lain waktu, terima kasih");
 
+    }
+
+    @Override
+    public void prepareFacilities(Room roomToBePrepared) {
+        if (roomToBePrepared instanceof Family) {
+            roomToBePrepared.prepared = true;
+            for (int i = 0; i < regulerProxy.getFacilities().size() ; i++) {
+                System.out.println(i+1 + " " + regulerProxy.getFacilities().get(i));
+            }
+            System.out.println("Baik fasilitas jenis " + roomToBePrepared.getClass().getSimpleName() + " Telah disiapkan");
+            return;
+        }
+        nextHandler.prepareFacilities(roomToBePrepared);
     }
 
 }
