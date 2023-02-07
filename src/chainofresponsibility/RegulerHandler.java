@@ -1,28 +1,23 @@
 package chainofresponsibility;
 
 import model.*;
-import proxy.GetRoomData;
 import proxy.RoomProxy;
 
-import java.util.Scanner;
+public class RegulerHandler extends MasterHandler{
 
-public class RegulerHandler implements RoomHandler {
 
-    Scanner sc = new Scanner(System.in);
-    RoomHandler nextHandler;
-    GetRoomData regulerProxy;
     public RegulerHandler() {
-        regulerProxy = new RoomProxy("Reguler");
+        this.roomProxy = new RoomProxy("Reguler");
     }
     @Override
     public void nextHandler(RoomHandler handler) {
-        this.nextHandler = handler;
+        this.nexHandler = handler;
     }
 
     @Override
     public void checkBooking(Resepsionis resepsionis) {
 
-            if (resepsionis.priceOffered >= regulerProxy.getMinimumPrice()) {
+            if (resepsionis.priceOffered >= roomProxy.getMinimumPrice()) {
 
                 System.out.println("Book Reguler room?: Y | N");
 
@@ -43,13 +38,13 @@ public class RegulerHandler implements RoomHandler {
     public void prepareFacilities(Room roomToBePrepared) {
         if (roomToBePrepared instanceof Family) {
             roomToBePrepared.prepared = true;
-            for (int i = 0; i < regulerProxy.getFacilities().size() ; i++) {
-                System.out.println(i+1 + " " + regulerProxy.getFacilities().get(i));
+            for (int i = 0; i < this.roomProxy.getFacilities().size() ; i++) {
+                System.out.println(i+1 + " " + this.roomProxy.getFacilities().get(i));
             }
             System.out.println("Baik fasilitas jenis " + roomToBePrepared.getClass().getSimpleName() + " Telah disiapkan");
             return;
         }
-        nextHandler.prepareFacilities(roomToBePrepared);
+        this.nexHandler.prepareFacilities(roomToBePrepared);
     }
 
 }

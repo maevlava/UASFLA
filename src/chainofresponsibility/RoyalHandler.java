@@ -4,17 +4,15 @@ import model.*;
 import proxy.GetRoomData;
 import proxy.RoomProxy;
 
-public class RoyalHandler implements RoomHandler {
+public class RoyalHandler extends MasterHandler{
 
-    RoomHandler nextHandler;
-    GetRoomData royalProxy;
     public RoyalHandler() {
-        royalProxy = new RoomProxy("Royal");
+        this.roomProxy = new RoomProxy("Royal");
     }
 
     @Override
     public void nextHandler(RoomHandler handler) {
-        this.nextHandler = handler;
+        this.nexHandler = handler;
     }
 
     @Override
@@ -22,7 +20,7 @@ public class RoyalHandler implements RoomHandler {
 
         if(resepsionis.roomRequest.equals("Royal")) {
 
-            if (resepsionis.priceOffered >= royalProxy.getMinimumPrice()) {
+            if (resepsionis.priceOffered >= this.roomProxy.getMinimumPrice()) {
                 System.out.println("You have successfully book Royal room");
                 Reservation newReservation = new Reservation(new Royal(), resepsionis.priceOffered);
                 resepsionis.pelanggan.reservation.add(newReservation);
@@ -31,7 +29,7 @@ public class RoyalHandler implements RoomHandler {
 
             System.out.println("Harga tidak memadai");
         }
-        nextHandler.checkBooking(resepsionis);
+        this.nexHandler.checkBooking(resepsionis);
     }
 
     @Override
@@ -39,13 +37,13 @@ public class RoyalHandler implements RoomHandler {
         if (roomToBePrepared instanceof Royal) {
             roomToBePrepared.prepared = true;
 
-            for (int i = 0; i < royalProxy.getFacilities().size(); i++) {
-                System.out.println( i+1 + " " + royalProxy.getFacilities().get(i));
+            for (int i = 0; i < this.roomProxy.getFacilities().size(); i++) {
+                System.out.println( i+1 + " " + this.roomProxy.getFacilities().get(i));
             }
 
             System.out.println("Baik fasilitas jenis " + roomToBePrepared.getClass().getSimpleName() + " Telah disiapkan");
             return;
         }
-        nextHandler.prepareFacilities(roomToBePrepared);
+        this.nexHandler.prepareFacilities(roomToBePrepared);
     }
 }

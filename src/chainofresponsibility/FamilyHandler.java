@@ -6,24 +6,22 @@ import proxy.RoomProxy;
 
 import java.util.Scanner;
 
-public class FamilyHandler implements RoomHandler {
+public class FamilyHandler extends MasterHandler{
 
-    Scanner sc = new Scanner(System.in);
-    RoomHandler nextHandler;
-    GetRoomData familyProxy;
+
     public FamilyHandler() {
-        familyProxy = new RoomProxy("Family");
+        this.roomProxy = new RoomProxy("Family");
     }
 
     @Override
     public void nextHandler(RoomHandler handler) {
-        this.nextHandler = handler;
+        this.nexHandler = handler;
     }
 
     @Override
     public void checkBooking(Resepsionis resepsionis) {
 
-            if (resepsionis.priceOffered >= familyProxy.getMinimumPrice()) {
+            if (resepsionis.priceOffered >= this.roomProxy.getMinimumPrice()) {
 
                 System.out.println("Coba Book family room?: Y | N");
 
@@ -38,19 +36,19 @@ public class FamilyHandler implements RoomHandler {
                 System.out.println("Harga tidak memadai");
             }
 
-            nextHandler.checkBooking(resepsionis);
+            this.nexHandler.checkBooking(resepsionis);
     }
 
     @Override
     public void prepareFacilities(Room roomToBePrepared) {
         if (roomToBePrepared instanceof Family) {
             roomToBePrepared.prepared = true;
-            for (int i = 0; i < familyProxy.getFacilities().size() ; i++) {
-                System.out.println(i+1 + " " + familyProxy.getFacilities().get(i));
+            for (int i = 0; i < this.roomProxy.getFacilities().size() ; i++) {
+                System.out.println(i+1 + " " + this.roomProxy.getFacilities().get(i));
             }
             System.out.println("Baik fasilitas jenis " + roomToBePrepared.getClass().getSimpleName() + " Telah disiapkan");
             return;
         }
-        nextHandler.prepareFacilities(roomToBePrepared);
+        this.nexHandler.prepareFacilities(roomToBePrepared);
     }
 }
