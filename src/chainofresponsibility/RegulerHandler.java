@@ -28,7 +28,8 @@ public class RegulerHandler implements RoomHandler {
 
                 if(sc.nextLine().toLowerCase().equals("y")) {
                     System.out.println("You have successfully book Reguler room");
-                    resepsionis.pelanggan.reservation.add(new Reguler());
+                    Reservation newReservation = new Reservation(new Reguler(), resepsionis.priceOffered);
+                    resepsionis.pelanggan.reservation.add(newReservation);
                     return;
                 }
 

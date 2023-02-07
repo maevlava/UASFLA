@@ -1,9 +1,6 @@
 package chainofresponsibility;
 
-import model.Family;
-import model.Pelanggan;
-import model.Room;
-import model.Royal;
+import model.*;
 import proxy.GetRoomData;
 import proxy.RoomProxy;
 
@@ -30,9 +27,10 @@ public class FamilyHandler implements RoomHandler {
 
                 System.out.println("Coba Book family room?: Y | N");
 
-                if (sc.nextLine().toLowerCase().equals("y")) {
+                if (sc.nextLine().equalsIgnoreCase("y")) {
                     System.out.println("You have successfully book Family room");
-                    resepsionis.pelanggan.reservation.add(new Family());
+                    Reservation newReservation = new Reservation(new Family(), resepsionis.priceOffered);
+                    resepsionis.pelanggan.reservation.add(newReservation);
                     return;
                 }
 

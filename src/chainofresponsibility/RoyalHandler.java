@@ -1,9 +1,6 @@
 package chainofresponsibility;
 
-import model.Family;
-import model.Pelanggan;
-import model.Room;
-import model.Royal;
+import model.*;
 import proxy.GetRoomData;
 import proxy.RoomProxy;
 
@@ -27,7 +24,8 @@ public class RoyalHandler implements RoomHandler {
 
             if (resepsionis.priceOffered >= royalProxy.getMinimumPrice()) {
                 System.out.println("You have successfully book Royal room");
-                resepsionis.pelanggan.reservation.add(new Royal());
+                Reservation newReservation = new Reservation(new Royal(), resepsionis.priceOffered);
+                resepsionis.pelanggan.reservation.add(newReservation);
                 return;
             }
 
