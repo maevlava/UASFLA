@@ -50,6 +50,10 @@ public class Resepsionis {
         royalHandler.prepareFacilities(roomToBePrepared);
     }
     public void showReservation() {
+        if (pelanggan.reservation.size() < 1) {
+            System.out.println("Belum ada reservasi, silahkan reservasi dulu");
+            return;
+        }
         System.out.println("Berikut adalah Kamar-kamar yang telah di book");
         int i = 1;
         for (Reservation reservation :
@@ -72,10 +76,14 @@ public class Resepsionis {
     }
 
     public void upgradeReservation(){
-        RoomProxy roomProxy;
+        int indexKamar = 0;
 
-        System.out.print("\n>> ");
-        int indexKamar = sc.nextInt() - 1;sc.nextLine();
+        do {
+            System.out.print("\n>> ");
+            indexKamar = sc.nextInt() - 1;sc.nextLine();
+
+        }while(indexKamar > this.pelanggan.reservation.size());
+
         System.out.println("Masukkan harga tambahannya");
         int tambahanHarga = sc.nextInt();sc.nextLine();
 
@@ -83,15 +91,13 @@ public class Resepsionis {
         if (upReservation.room instanceof Royal)
             System.out.println("Royal is the highest level we have");
         else if (upReservation.room instanceof Family) {
-            roomProxy = new RoomProxy("Royal");
-            if (upReservation.priceOffered + tambahanHarga <= roomProxy.getMinimumPrice()) {
+            if (upReservation.priceOffered + tambahanHarga <= new Royal().getMinimumPrice()) {
                 System.out.println("Maaf Harga tidak cukup");
             } else {
                 upReservation.room = new Royal();
             }
         } else if (upReservation.room instanceof Reguler) {
-            roomProxy = new RoomProxy("Family");
-            if (upReservation.priceOffered + tambahanHarga <= roomProxy.getMinimumPrice()) {
+            if (upReservation.priceOffered + tambahanHarga <= new Family().getMinimumPrice()) {
                 System.out.println("Maaf Harga tidak cukup");
             } else {
                 upReservation.room = new Family();
@@ -99,12 +105,19 @@ public class Resepsionis {
         }
 
         System.out.println("Kamar telah diupgrade jangan lupa untuk di prepare di menu prepare");
+        System.out.println("PDF Telah dikirim ke email pelanggan");
     }
     public void deleteReservation() {
-        System.out.print("\n>> ");
-        int indexKamar = sc.nextInt() - 1;sc.nextLine();
+        int indexKamar = 0;
+
+        do {
+            System.out.print("\n>> ");
+            indexKamar = sc.nextInt() - 1;sc.nextLine();
+
+        }while(indexKamar > this.pelanggan.reservation.size());
+
         this.pelanggan.reservation.remove(indexKamar);
-        System.out.println("Reservation telah dihilangkan");
+        System.out.println("Reservation telah dihilangkan, PDF telah dikirim ke email pelanggan");
     }
 
     public String getRoomRequest() {

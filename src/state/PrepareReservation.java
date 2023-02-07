@@ -20,8 +20,13 @@ public class PrepareReservation implements ApplicationState {
         Resepsionis resepsionis = new Resepsionis(pelanggan);
         resepsionis.showReservation();
 
-        System.out.print("\n>> ");
-        int indexKamar = sc.nextInt() - 1;sc.nextLine();
+        int indexKamar = 0;
+
+        do {
+            System.out.print("\n>> ");
+            indexKamar = sc.nextInt() - 1;sc.nextLine();
+
+        }while(indexKamar > pelanggan.reservation.size());
 
         resepsionis.askRoomHandlerPrepare(indexKamar);
     }

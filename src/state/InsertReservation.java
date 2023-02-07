@@ -2,6 +2,7 @@ package state;
 
 import chainofresponsibility.*;
 import model.Pelanggan;
+import model.Reguler;
 
 import java.util.Scanner;
 
@@ -20,11 +21,17 @@ public class InsertReservation implements ApplicationState {
 
     private void bookKamar(Pelanggan pelanggan) {
         if (pelanggan.nama.equals("")) {
-            System.out.print("Mohon masukkan nama: ");
-            pelanggan.nama += sc.nextLine();
+            do{
+                System.out.print("Mohon masukkan nama: ");
+                pelanggan.nama = sc.nextLine();
+            }while(pelanggan.nama.length() < 1);
         }
-        System.out.print("\nMasukkan tipe Kamar: \"Royal\" | \"Family\" | \"Reguler\" ");
-        String kamar = sc.nextLine();
+        String kamar = "";
+        do{
+            System.out.print("\nMasukkan tipe Kamar: \"Royal\" | \"Family\" | \"Reguler\" ");
+            kamar = sc.nextLine();
+        }while(!(kamar.equals("Royal") || kamar.equals("Reguler") || kamar.equals("Family")));
+
         System.out.print("\nMasukkan Harga: ");
         int harga = sc.nextInt();sc.nextLine();
 
